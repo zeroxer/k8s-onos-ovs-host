@@ -1,0 +1,31 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: ovs-deployment
+spec:
+  selector:
+    matchLabels:
+      app: ovs
+  replicas: 10 # tells deployment to run 5 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: ovs
+    spec:
+      containers:
+      - name: ovs
+        image: registry.cn-qingdao.aliyuncs.com/mer/lab:v3.4
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+            - ALL
+        env:
+        - name: PATH
+          value: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/share/openvswitch/scripts"
+        command: [ "/bin/bash" ]
+        args: [ "-c", "echo [Start] OVS && ovs-ctl start && sleep 3 && echo [Show] OVS && ovs-vsctl show &&
+        ovs-vsctl --may-exist add-br ovs_br && ovs-vsctl show && ovs-vsctl set-controller ovs_br tcp:10.244.0.13:6653 &&
+        ovs-vsctl show && sleep infinity" ]
+        ports:
+        - containerPort: 6653

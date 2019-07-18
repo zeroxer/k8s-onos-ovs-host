@@ -1,0 +1,22 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: ubuntu1804-deployment
+spec:
+  selector:
+    matchLabels:
+      app: ubuntu1804
+  replicas: 2 # tells deployment to run 5 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: ubuntu1804
+    spec: # qi wang de zhuang tai
+      containers:
+      - name: ubuntu1804
+        image: ubuntu:18.04
+        command: [ "/bin/bash" ]
+        args: [ "-c", "uname -a && apt update && apt install -y iputils-ping && ping www.baidu.com -c 3 && sleep infinity" ]
+        ports:
+        - containerPort: 22
+      # restartPolicy: OnFailure

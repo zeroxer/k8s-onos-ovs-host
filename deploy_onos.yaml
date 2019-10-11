@@ -14,10 +14,16 @@ spec:
     spec:
       containers:
       - name: onos
-        image: onosproject/onos:1.13.9
+        image: onosproject/onos:2.2.0
         command: [ "/bin/bash" ]
-        args: [ "-c", "echo [Config] Activate openflow app && app activate org.onosproject.openflow &&
-        echo [Config] Activate openflow app && app activate org.onosproject.fwd && sleep infinity" ]
+        args: [ "-c", "sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && 
+        apt update &&
+        apt install sshpass -y &&
+        echo [Config] Activate openflow app && 
+        sshpass -p rocks ssh -q -p 8101 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null onos@127.0.0.1 "app activate org.onosproject.openflow" &&
+        echo [Config] Activate openflow app &&
+        sshpass -p rocks ssh -q -p 8101 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null onos@127.0.0.1 "app activate org.onosproject.fwd" &&
+        sleep infinity" ]
         ports:
         - containerPort: 6653
         - containerPort: 8181

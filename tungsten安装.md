@@ -25,7 +25,7 @@ sudo kubectl get nodes
 
 > 参考：https://tungstenfabric.github.io/website/Tungsten-Fabric-Ubuntu-one-line-install-on-k8s.html
 
-### 尝试直接使用脚本（失败）
+### 【失败】尝试直接使用脚本
 ```shell
 K8S_MASTER_IP=10.108.145.16; CONTRAIL_REPO="docker.io\/opencontrailnightly"; CONTRAIL_RELEASE="latest"; sudo mkdir -pm 777 /var/lib/contrail/kafka-logs; curl https://raw.githubusercontent.com/Juniper/contrail-kubernetes-docs/master/install/kubernetes/templates/contrail-single-step-cni-install-ubuntu.yaml | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER_IP/g; s/{{ CONTRAIL_REPO }}/$CONTRAIL_REPO/g; s/{{ CONTRAIL_RELEASE }}/$CONTRAIL_RELEASE/g" | sudo kubectl apply -f -
 ```
@@ -38,7 +38,7 @@ K8S_MASTER_IP=10.108.145.16; CONTRAIL_REPO="docker.io\/opencontrailnightly"; CON
 daemonsets, deployments, replicasets resources under extensions/v1beta1 - use apps/v1 instead
 ```
 
-### 下载contrail-single-step-cni-install-ubuntu.yaml文件，手动替换apiVersion
+### 【尝试解决】下载contrail-single-step-cni-install-ubuntu.yaml文件，手动替换apiVersion
 把原来的
 ```yaml
 apiVersion: extensions/v1beta1

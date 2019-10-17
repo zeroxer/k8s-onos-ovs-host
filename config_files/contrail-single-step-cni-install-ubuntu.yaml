@@ -104,6 +104,9 @@ metadata:
   labels:
     app: config-zookeeper
 spec:
+  selector:
+    matchLabels:
+      app: config-zookeeper
   template:
     metadata:
       labels:
@@ -154,6 +157,9 @@ metadata:
   labels:
     app: contrail-analyticsdb
 spec:
+  selector:
+    matchLabels:
+      app: contrail-analyticsdb
   template:
     metadata:
       labels:
@@ -271,6 +277,9 @@ metadata:
   labels:
     app: contrail-configdb
 spec:
+  selector:
+    matchLabels:
+      app: contrail-configdb
   template:
     metadata:
       labels:
@@ -322,6 +331,9 @@ metadata:
   labels:
     app: contrail-config-database-nodemgr
 spec:
+  selector:
+    matchLabels:
+      app: contrail-config-database-nodemgr
   template:
     metadata:
       labels:
@@ -402,6 +414,9 @@ metadata:
   labels:
     app: contrail-analytics
 spec:
+  selector:
+    matchLabels:
+      app: contrail-analytics
   template:
     metadata:
       labels:
@@ -502,6 +517,9 @@ metadata:
   labels:
     app: contrail-analytics-snmp
 spec:
+  selector:
+    matchLabels:
+      app: contrail-analytics-snmp
   template:
     metadata:
       labels:
@@ -614,6 +632,9 @@ metadata:
   labels:
     app: contrail-analytics-alarm
 spec:
+  selector:
+    matchLabels:
+      app: contrail-analytics-alarm
   template:
     metadata:
       labels:
@@ -727,6 +748,9 @@ metadata:
   labels:
     app: contrail-controller-control
 spec:
+  selector:
+    matchLabels:
+      app: contrail-controller-control
   template:
     metadata:
       labels:
@@ -848,6 +872,9 @@ metadata:
   labels:
     app: contrail-controller-config
 spec:
+  selector:
+    matchLabels:
+      app: contrail-controller-config
   template:
     metadata:
       labels:
@@ -978,6 +1005,9 @@ metadata:
   labels:
     app: contrail-controller-webui
 spec:
+  selector:
+    matchLabels:
+      app: contrail-controller-webui
   template:
     metadata:
       labels:
@@ -1054,6 +1084,9 @@ metadata:
   labels:
     app: redis
 spec:
+  selector:
+    matchLabels:
+      app: redis
   template:
     metadata:
       labels:
@@ -1099,6 +1132,9 @@ metadata:
   labels:
     app: rabbitmq
 spec:
+  selector:
+    matchLabels:
+      app: rabbitmq
   template:
     metadata:
       labels:
@@ -1154,6 +1190,9 @@ metadata:
   labels:
     app: contrail-kube-manager
 spec:
+  selector:
+    matchLabels:
+      app: contrail-kube-manager
   template:
     metadata:
       labels:
@@ -1227,6 +1266,9 @@ metadata:
   labels:
     app: contrail-agent
 spec:
+  selector:
+    matchLabels:
+      app: contrail-agent
   template:
     metadata:
       labels:

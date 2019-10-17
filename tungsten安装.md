@@ -64,19 +64,6 @@ kind: DaemonSet
 ```yaml
 apiVersion: apps/v1
 kind: DaemonSet
-metadata:
-  name: config-zookeeper
-  namespace: kube-system
-  labels:
-    app: config-zookeeper
-spec:
-  selector:
-    matchLabels:
-      app: config-zookeeper
-  template:
-    metadata:
-      labels:
-        app: config-zookeeper
 ```
 
 ##### 2.添加selector选项

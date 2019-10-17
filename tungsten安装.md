@@ -125,10 +125,57 @@ sudo kubectl get pods --all-namespaces
 ```
 可能会看到如下输出
 ```shell
-
+╭─fnl@k8smaster ~/k8s-onos-ovs-host/config_files ‹master› 
+╰─$ sudo kubectl get pods --all-namespaces
+NAMESPACE     NAME                                     READY   STATUS              RESTARTS   AGE
+kube-system   config-zookeeper-pwstm                   0/1     ContainerCreating   0          17s
+kube-system   contrail-agent-7bdm9                     0/2     Init:0/3            0          14s
+kube-system   contrail-analytics-6clf9                 0/3     Init:0/1            0          17s
+kube-system   contrail-analytics-alarm-n427w           0/3     Init:0/1            0          17s
+kube-system   contrail-analytics-snmp-fcr95            0/3     Init:0/1            0          17s
+kube-system   contrail-analyticsdb-967cd               0/3     Init:0/1            0          17s
+kube-system   contrail-config-database-nodemgr-2mx89   0/1     Init:0/1            0          17s
+kube-system   contrail-configdb-8g9nk                  0/1     ContainerCreating   0          17s
+kube-system   contrail-controller-config-7psw4         0/5     Init:0/1            0          16s
+kube-system   contrail-controller-control-84rl7        0/4     Init:0/1            0          17s
+kube-system   contrail-controller-webui-2f5xd          0/2     Init:0/1            0          16s
+kube-system   contrail-kube-manager-9q7bk              0/1     Init:0/1            0          14s
+kube-system   coredns-5644d7b6d9-4666l                 0/1     ContainerCreating   0          23h
+kube-system   coredns-5644d7b6d9-8mffv                 0/1     ContainerCreating   0          23h
+kube-system   etcd-k8smaster                           1/1     Running             0          23h
+kube-system   kube-apiserver-k8smaster                 1/1     Running             0          23h
+kube-system   kube-controller-manager-k8smaster        1/1     Running             0          23h
+kube-system   kube-proxy-qx4ms                         1/1     Running             0          23h
+kube-system   kube-scheduler-k8smaster                 1/1     Running             0          23h
+kube-system   rabbitmq-pwlfp                           0/1     ContainerCreating   0          15s
+kube-system   redis-mqmh6                              0/1     ContainerCreating   0          15s
 ```
 等待初始化完成，如下
 ```shell
+╭─fnl@k8smaster ~/k8s-onos-ovs-host/config_files ‹master› 
+╰─$ sudo kubectl get pods --all-namespaces
+NAMESPACE     NAME                                     READY   STATUS              RESTARTS   AGE
+kube-system   config-zookeeper-pwstm                   1/1     Running             0          3m49s
+kube-system   contrail-agent-7bdm9                     2/2     Running             0          3m46s
+kube-system   contrail-analytics-6clf9                 3/3     Running             1          3m49s
+kube-system   contrail-analytics-alarm-n427w           3/3     Running             2          3m49s
+kube-system   contrail-analytics-snmp-fcr95            3/3     Running             2          3m49s
+kube-system   contrail-analyticsdb-967cd               3/3     Running             2          3m49s
+kube-system   contrail-config-database-nodemgr-2mx89   1/1     Running             2          3m49s
+kube-system   contrail-configdb-8g9nk                  1/1     Running             0          3m49s
+kube-system   contrail-controller-config-7psw4         5/5     Running             1          3m48s
+kube-system   contrail-controller-control-84rl7        4/4     Running             1          3m49s
+kube-system   contrail-controller-webui-2f5xd          2/2     Running             0          3m48s
+kube-system   contrail-kube-manager-9q7bk              1/1     Running             0          3m46s
+kube-system   coredns-5644d7b6d9-4666l                 0/1     ContainerCreating   0          23h
+kube-system   coredns-5644d7b6d9-8mffv                 0/1     ContainerCreating   0          23h
+kube-system   etcd-k8smaster                           1/1     Running             0          23h
+kube-system   kube-apiserver-k8smaster                 1/1     Running             0          23h
+kube-system   kube-controller-manager-k8smaster        1/1     Running             0          23h
+kube-system   kube-proxy-qx4ms                         1/1     Running             0          23h
+kube-system   kube-scheduler-k8smaster                 1/1     Running             0          23h
+kube-system   rabbitmq-pwlfp                           0/1     CrashLoopBackOff    5          3m47s
+kube-system   redis-mqmh6                              1/1     Running             0          3m47s
 ```
 
 ## 打开TF的web UI

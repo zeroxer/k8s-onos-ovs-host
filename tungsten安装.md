@@ -111,9 +111,9 @@ K8S_MASTER_IP=10.108.145.16; CONTRAIL_REPO="docker.io\/opencontrailnightly"; CON
 
 所以，删除我们在k8s创建的内容，再重新执行一次上一步手动安装使用的命令。
 
-注意：这一步是`create`
+注意：这一步是`apply`
 ```shell
-K8S_MASTER_IP=10.108.145.16; CONTRAIL_REPO="docker.io\/opencontrailnightly"; CONTRAIL_RELEASE="latest"; sudo mkdir -pm 777 /var/lib/contrail/kafka-logs; cat contrail-single-step-cni-install-ubuntu.yaml | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER_IP/g; s/{{ CONTRAIL_REPO }}/$CONTRAIL_REPO/g; s/{{ CONTRAIL_RELEASE }}/$CONTRAIL_RELEASE/g" | sudo kubectl create -f -
+K8S_MASTER_IP=10.108.145.16; CONTRAIL_REPO="docker.io\/opencontrailnightly"; CONTRAIL_RELEASE="latest"; sudo mkdir -pm 777 /var/lib/contrail/kafka-logs; cat contrail-single-step-cni-install-ubuntu.yaml | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER_IP/g; s/{{ CONTRAIL_REPO }}/$CONTRAIL_REPO/g; s/{{ CONTRAIL_RELEASE }}/$CONTRAIL_RELEASE/g" | sudo kubectl apply -f -
 ```
 
 ## 等待初始化完成

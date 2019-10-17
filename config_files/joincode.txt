@@ -1,2 +1,2 @@
-kubeadm join 172.20.3.60:6443 --token a39mpe.hwyze5fzewjciymr \
-    --discovery-token-ca-cert-hash sha256:31baf7d579f9b72d49e03b30e6314cdbaa1da7277ebc080f7c1ab3660da866b4 
+kubeadm join 10.108.145.16:6443 --token dyt10h.ify12h5yahj0oqrk \
+    --discovery-token-ca-cert-hash sha256:54ad5eb7951369ffa09168942de72a8a804ec0407d9fb6d9b15911aef0414439

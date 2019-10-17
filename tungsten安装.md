@@ -91,3 +91,9 @@ spec:
 ```shell
 K8S_MASTER_IP=10.108.145.16; CONTRAIL_REPO="docker.io\/opencontrailnightly"; CONTRAIL_RELEASE="latest"; sudo mkdir -pm 777 /var/lib/contrail/kafka-logs; cat contrail-single-step-cni-install-ubuntu.yaml | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER_IP/g; s/{{ CONTRAIL_REPO }}/$CONTRAIL_REPO/g; s/{{ CONTRAIL_RELEASE }}/$CONTRAIL_RELEASE/g" | sudo kubectl apply -f -
 ```
+
+## 耐心等待-依赖于网络环境
+
+> 请保证网络的带宽、以及从dockerhub中下载镜像的速度
+
+后台会自动下载各种docker镜像，并自动配置相关内容

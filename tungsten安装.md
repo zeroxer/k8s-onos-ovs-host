@@ -49,11 +49,12 @@ daemonsets, deployments, replicasets resources under extensions/v1beta1 - use ap
 K8S_MASTER_IP=10.108.145.16; CONTRAIL_REPO="docker.io\/opencontrailnightly"; CONTRAIL_RELEASE="latest"; sudo mkdir -pm 777 /var/lib/contrail/kafka-logs; curl https://raw.githubusercontent.com/Juniper/contrail-kubernetes-docs/master/install/kubernetes/templates/contrail-single-step-cni-install-ubuntu.yaml | sed "s/{{ K8S_MASTER_IP }}/$K8S_MASTER_IP/g; s/{{ CONTRAIL_REPO }}/$CONTRAIL_REPO/g; s/{{ CONTRAIL_RELEASE }}/$CONTRAIL_RELEASE/g" | sudo kubectl delete -f -
 ```
 
-#### 然后，下载yaml文件，替换api版本
+#### 然后，下载yaml文件，手动修改
 ```shell
 wget https://raw.githubusercontent.com/Juniper/contrail-kubernetes-docs/master/install/kubernetes/templates/contrail-single-step-cni-install-ubuntu.yaml
 ```
 
+##### 1.替换api版本信息 
 把原来的
 ```yaml
 apiVersion: extensions/v1beta1
@@ -63,6 +64,39 @@ kind: DaemonSet
 ```yaml
 apiVersion: apps/v1
 kind: DaemonSet
+metadata:
+  name: config-zookeeper
+  namespace: kube-system
+  labels:
+    app: config-zookeeper
+spec:
+  selector:
+    matchLabels:
+      app: config-zookeeper
+  template:
+    metadata:
+      labels:
+        app: config-zookeeper
+```
+
+##### 2.添加selector选项
+同时，在所有DaemonSet对应位置添加一个配置项`spec.selector.matchLabels:`,内容为对应DaemonSet的labels下的内容，例如如下配置中为`app: config-zookeeper`
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: config-zookeeper
+  namespace: kube-system
+  labels:
+    app: config-zookeeper
+spec:
+  selector:
+    matchLabels:
+      app: config-zookeeper
+  template:
+    metadata:
+      labels:
+        app: config-zookeeper
 ```
 
 ## 手动重新安装

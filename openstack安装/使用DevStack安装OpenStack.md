@@ -14,7 +14,15 @@
   # 检查proxy设置是否正确
   curl ip.gs
   # 配置pip国内源
-  
+  mkdir ~/.pip
+  vim ~/.pip/pip.conf
+  # 添加如下内容
+  [global]
+  index-url = https://mirrors.ustc.edu.cn/pypi/web/simple
+  format = columns
+  # 权限
+  sudo chown -R stack:stack ~/.cache
+  sudo chown -R stack:stack ~/data
   ```
 
 ## 一、单机安装

@@ -50,6 +50,11 @@ sudo pip install --upgrade pip
 sudo pip install --upgrade setuptools
 ```
 
+注意：不升级pip可能出现的问题
+```shell
+pip无法找到指定版本的包
+```
+
 ### 3.配置目录权限
 
 > 如果出现目录没有权限再执行如下操作

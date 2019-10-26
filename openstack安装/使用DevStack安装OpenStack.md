@@ -10,6 +10,42 @@
 
 ## 一、单机安装
 
+### 0.下载并配置Devstack
+
+#### 0.1.添加用户
+```shell
+sudo useradd -s /bin/bash -d /opt/stack -m stack
+sudo su -
+echo "stack ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+sudo su stack
+cd ~
+```
+
+#### 0.2.下载Devstack
+```shell
+sudo apt-get install git -y
+git clone https://opendev.org/openstack/devstack
+cd devstack
+```
+
+#### 0.3.配置Devstack
+```shell
+cp samples/local.conf .
+vim local.conf
+# 添加/修改如下内容
+[[local|localrc]]
+FLOATING_RANGE=x.x.x.x/27
+FIXED_RANGE=10.11.12.0/24
+
+ADMIN_PASSWORD=pass
+DATABASE_PASSWORD=pass
+RABBIT_PASSWORD=pass
+SERVICE_PASSWORD=pass
+
+HOST_IP=x.x.x.x
+GIT_BASE=https://github.com
+```
+
 ### 1.设置代理
 ```shell
 curl ip.gs

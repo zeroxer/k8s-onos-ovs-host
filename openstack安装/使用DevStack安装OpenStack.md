@@ -57,8 +57,11 @@ curl ip.gs
 ```
 
 #### 配置git代理
+
+> 如果配置了上一步，则不要再单独配置git代理
+
 ```shell
-git config --global https.proxy http://127.0.0.1:1080
+git config --global http.proxy http://127.0.0.1:1080
 git config --global https.proxy https://127.0.0.1:1080
 git config --global --unset http.proxy
 git config --global --unset https.proxy

@@ -29,6 +29,17 @@ cd devstack
 ```
 
 #### 0.3.配置Devstack
+
+##### 0.3.1.[TODO]更换Devstack源
+
+1.把`devstack/stackrc`文件中的`GIT_BASE=${GIT_BASE:-https://opendev.org}`替换成`GIT_BASE=${GIT_BASE:-https://gitee.com}`
+
+- 注意：如果使用的这一步，则之后就不要再设置`GIT_BASE`
+
+2.把`devstack/stackrc`文件中的`${GIT_BASE}/openstack`替换成`${GIT_BASE}/zerocjx`
+    
+- 注意：此时应该保证`GIT_BASE`为`https://gitee.com`
+
 ```shell
 cp samples/local.conf .
 vim local.conf
@@ -43,7 +54,8 @@ RABBIT_PASSWORD=pass
 SERVICE_PASSWORD=pass
 
 HOST_IP=x.x.x.x
-GIT_BASE=https://github.com
+# GIT_BASE=https://github.com
+# GIT_BASE=https://giee.com
 ```
 
 ### 1.设置代理

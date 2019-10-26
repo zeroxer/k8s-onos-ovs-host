@@ -56,6 +56,14 @@ export https_proxy=http://x.x.x.x:xxxx
 curl ip.gs
 ```
 
+#### 配置git代理
+```shell
+git config --global https.proxy http://127.0.0.1:1080
+git config --global https.proxy https://127.0.0.1:1080
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
 ### 2.配置pip
 
 #### 2.1配置主用户的pip

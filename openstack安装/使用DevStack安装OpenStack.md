@@ -91,6 +91,12 @@ sudo pip install --upgrade setuptools
 pip无法找到指定版本的包
 ```
 
+#### 2.4创建python虚拟环境
+```shell
+cd devstack
+virtualenv ../requirements/.venv/
+```
+
 ### 3.配置目录权限
 
 > 如果出现目录没有权限再执行如下操作

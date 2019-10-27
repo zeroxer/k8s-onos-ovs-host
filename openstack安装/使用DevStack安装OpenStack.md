@@ -58,6 +58,42 @@ HOST_IP=x.x.x.x
 # GIT_BASE=https://giee.com
 ```
 
+参考配置文件
+cat << EOF > ~/devstack/local.conf 
+```conf
+[[local|localrc]] 
+HOST_IP=192.168.145.141
+SERVICE_IP_VERSION=4
+DATABASE_PASSWORD=password
+RABBIT_PASSWORD=password
+SERVICE_TOKEN=password
+SERVICE_PASSWORD=password
+ADMIN_PASSWORD=password
+WSGI_MODE=mod_wsgi
+NOVA_USE_MOD_WSGI=False
+CINDER_USE_MOD_WSGI=False
+TARGET_BRANCH=stable/rocky
+DOWNLOAD_DEFAULT_IMAGES=False
+NEUTRON_CREATE_INITIAL_NETWORKS=False
+disable_service tempest
+GIT_BASE=http://git.trystack.cn
+NOVNC_REPO=http://git.trystack.cn/kanaka/noVNC.git
+enable_plugin zun http://git.trystack.cn/openstack/zun stable/rocky
+enable_plugin zun-tempest-plugin http://git.trystack.cn/openstack/zun-tempest-plugin
+#This below plugin enables installation of container engine on Devstack. 
+#The default container engine is Docker 
+enable_plugin devstack-plugin-container http://git.trystack.cn/openstack/devstack-plugin-container stable/rocky
+# In Kuryr, KURYR_CAPABILITY_SCOPE is ‘local’ by default, 
+# but we must change it to ‘global’ in the multinode scenario. 
+KURYR_CAPABILITY_SCOPE=local
+KURYR_ETCD_PORT=2379
+enable_plugin kuryr-libnetwork http://git.trystack.cn/openstack/kuryr-libnetwork stable/rocky
+# install python-zunclient from git 
+#LIBS_FROM_GIT="python-zunclient" 
+# Optional: uncomment to enable the Zun UI plugin in Horizon 
+enable_plugin zun-ui http://git.trystack.cn/openstack/zun-ui stable/rocky
+```
+
 ### 1.设置代理
 ```shell
 curl ip.gs

@@ -61,7 +61,7 @@ HOST_IP=x.x.x.x
 ### 1.设置代理
 ```shell
 curl ip.gs
-export all_proxy=http://x.x.x.x:xxxx
+# export all_proxy=http://x.x.x.x:xxxx # 不推荐使用
 export http_proxy=http://x.x.x.x:xxxx
 export https_proxy=http://x.x.x.x:xxxx
 # 检查proxy设置是否正确

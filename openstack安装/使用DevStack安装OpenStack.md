@@ -100,6 +100,7 @@ curl ip.gs
 # export all_proxy=http://x.x.x.x:xxxx # 不推荐使用
 export http_proxy=http://x.x.x.x:xxxx
 export https_proxy=http://x.x.x.x:xxxx
+export no_proxy='mirrors.ustc.edu.cn,mirrors.tuna.tsinghua.edu.cn'
 # 检查proxy设置是否正确
 curl ip.gs
 ```
@@ -177,6 +178,14 @@ virtualenv ../requirements/.venv/
 # 权限
 sudo chown -R stack:stack ~/.cache
 sudo chown -R stack:stack ~/data
+```
+
+### (根据实际情况)4.关闭Ubuntu的NetworkManager，配置DNS
+```shell
+sudo vim /etc/systemd/resolved.conf
+[Resolve]
+DNS=8.8.8.8
+sudo systemctl restart systemd-resolved.service
 ```
 
 ## 二、集群安装

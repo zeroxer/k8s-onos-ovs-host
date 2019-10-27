@@ -102,6 +102,7 @@ vim ~/.pip/pip.conf
 [global]
 index-url = https://mirrors.ustc.edu.cn/pypi/web/simple
 format = columns
+trusted-host = mirrors.ustc.edu.cn
 ```
 
 #### 2.3更新系统的pip版本

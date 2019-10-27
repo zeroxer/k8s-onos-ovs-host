@@ -144,3 +144,30 @@ sudo chown -R stack:stack ~/data
 ```
 
 ## 二、集群安装
+
+
+## Q&A
+
+### 1.pip找不到指定版本的包
+
+- 问题
+
+```shell
+openstack no matching distribvution found for wrapt==1.11.2
+```
+- 分析原因
+
+    - 在ubuntu系统中直接使用`pip install wrapt==1.11.2`发现该包已经安装到python2.7中，说明包是可以找到的
+    - 怀疑是网络问题导致的某些步骤不完整。因为在网络流畅的情况下，没有出现该问题。
+        - 网络问题：校园网在晚上基本处于网络断开状态，连接github速度为20k，使用代理也是同样的速度。
+        - 只能通过白天解决该问题
+    - 搜索引擎没有找到对应的问题的解决方式，有一个类似的是通过升级到python3解决的类似问题
+
+- 尝试解决方法
+重新安装devstack
+```shell
+./unstack.sh
+./clean.sh
+sudo rm -rf /opt/stack
+sudo reboot
+```

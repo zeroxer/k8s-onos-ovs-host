@@ -100,7 +100,8 @@ curl ip.gs
 # export all_proxy=http://x.x.x.x:xxxx # 不推荐使用
 export http_proxy=http://x.x.x.x:xxxx
 export https_proxy=http://x.x.x.x:xxxx
-export no_proxy='mirrors.ustc.edu.cn,mirrors.tuna.tsinghua.edu.cn'
+# 添加HOST_IP到no_proxy
+export no_proxy='mirrors.ustc.edu.cn,mirrors.tuna.tsinghua.edu.cn,x.x.x.x'
 # 检查proxy设置是否正确
 curl ip.gs
 ```

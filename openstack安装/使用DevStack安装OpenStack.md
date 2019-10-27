@@ -101,7 +101,7 @@ curl ip.gs
 export http_proxy=http://x.x.x.x:xxxx
 export https_proxy=http://x.x.x.x:xxxx
 # 添加HOST_IP到no_proxy
-export no_proxy='mirrors.ustc.edu.cn,mirrors.tuna.tsinghua.edu.cn,127.0.0.1,x.x.x.x'
+export no_proxy='mirrors.ustc.edu.cn,mirrors.tuna.tsinghua.edu.cn,gitee.com,127.0.0.1,x.x.x.x'
 # 检查proxy设置是否正确
 curl ip.gs
 ```
@@ -219,6 +219,9 @@ sudo reboot
 ```
 
 - 找到问题原因
+
+使用手动到指定的位置使用pip安装依赖，例如`tempest`、`glance对应的系统的依赖`
+
 
 执行`stack.sh`的过程中会修改`/opt/stack/requirements`仓库中的`uper-constraints.txt`。
 

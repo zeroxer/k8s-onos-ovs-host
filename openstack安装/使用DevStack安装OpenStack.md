@@ -171,3 +171,13 @@ openstack no matching distribvution found for wrapt==1.11.2
 sudo rm -rf /opt/stack
 sudo reboot
 ```
+
+- 找到问题原因
+
+执行`stack.sh`的过程中会修改`/opt/stack/requirements`仓库中的`uper-constraints.txt`。
+
+使用如下命令撤销更改
+```shell
+cd /opt/stack/requiremts/
+git checkout .
+```

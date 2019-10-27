@@ -94,6 +94,9 @@ trusted-host = mirrors.ustc.edu.cn
 ```
 
 #### 2.2配置stack的pip
+
+- 方式一、修改配置文件
+
 ```shell
 # 配置pip国内源
 mkdir ~/.pip
@@ -105,8 +108,16 @@ format = columns
 trusted-host = mirrors.ustc.edu.cn
 ```
 
+- 方式二、升级pip，使用命令行配置
+```shell
+# 升级 pip 到最新的版本 (>=10.0.0) 后进行配置：
+pip install pip -U
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
 #### 2.3更新系统的pip版本
 ```shell
+# pip升级可选
 sudo pip install --upgrade pip
 sudo pip install --upgrade setuptools
 ```

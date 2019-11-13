@@ -26,6 +26,7 @@ cd ~
 sudo apt-get install git -y
 git clone https://opendev.org/openstack/devstack
 cd devstack
+git checkout stable/train
 ```
 
 #### 0.3.配置Devstack

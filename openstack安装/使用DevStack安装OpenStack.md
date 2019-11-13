@@ -45,15 +45,25 @@ cp samples/local.conf .
 vim local.conf
 # 添加/修改如下内容
 [[local|localrc]]
-FLOATING_RANGE=x.x.x.x/27
+HOST_IP=x.x.x.x
 FIXED_RANGE=10.11.12.0/24
+
+Q_USE_SECGROUP=True
+FLOATING_RANGE=10.108.144.0/22
+PUBLIC_NETWORK_GATEWAY=10.108.144.1
+PUBLIC_INTERFACE=ens160
+
+E_PROVIDERNET_FOR_PUBLIC=True
+OVS_PHYSICAL_BRIDGE=br-ex
+PUBLIC_BRIDGE=br-ex
+OVS_BRIDGE_MAPPINGS=public:br-ex
 
 ADMIN_PASSWORD=pass
 DATABASE_PASSWORD=pass
 RABBIT_PASSWORD=pass
 SERVICE_PASSWORD=pass
 
-HOST_IP=x.x.x.x
+
 # GIT_BASE=https://github.com
 # GIT_BASE=https://giee.com
 ```

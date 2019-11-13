@@ -126,9 +126,9 @@ mkdir ~/.pip
 vim ~/.pip/pip.conf
 # 添加如下内容
 [global]
-index-url = https://mirrors.ustc.edu.cn/pypi/web/simple
-format = columns
-trusted-host = mirrors.ustc.edu.cn
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host=mirrors.aliyun.com
 ```
 
 #### 2.2配置stack的pip
@@ -141,9 +141,9 @@ mkdir ~/.pip
 vim ~/.pip/pip.conf
 # 添加如下内容
 [global]
-index-url = https://mirrors.ustc.edu.cn/pypi/web/simple
-format = columns
-trusted-host = mirrors.ustc.edu.cn
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host=mirrors.aliyun.com
 ```
 
 - 方式二、升级pip，使用命令行配置

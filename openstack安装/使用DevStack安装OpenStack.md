@@ -72,37 +72,136 @@ SERVICE_PASSWORD=pass
 参考配置文件
 cat << EOF > ~/devstack/local.conf 
 ```conf
-[[local|localrc]] 
-HOST_IP=192.168.145.141
-SERVICE_IP_VERSION=4
-DATABASE_PASSWORD=password
-RABBIT_PASSWORD=password
-SERVICE_TOKEN=password
-SERVICE_PASSWORD=password
-ADMIN_PASSWORD=password
-WSGI_MODE=mod_wsgi
-NOVA_USE_MOD_WSGI=False
-CINDER_USE_MOD_WSGI=False
-TARGET_BRANCH=stable/rocky
-DOWNLOAD_DEFAULT_IMAGES=False
-NEUTRON_CREATE_INITIAL_NETWORKS=False
-disable_service tempest
-GIT_BASE=http://git.trystack.cn
-NOVNC_REPO=http://git.trystack.cn/kanaka/noVNC.git
-enable_plugin zun http://git.trystack.cn/openstack/zun stable/rocky
-enable_plugin zun-tempest-plugin http://git.trystack.cn/openstack/zun-tempest-plugin
-#This below plugin enables installation of container engine on Devstack. 
-#The default container engine is Docker 
-enable_plugin devstack-plugin-container http://git.trystack.cn/openstack/devstack-plugin-container stable/rocky
-# In Kuryr, KURYR_CAPABILITY_SCOPE is ‘local’ by default, 
-# but we must change it to ‘global’ in the multinode scenario. 
-KURYR_CAPABILITY_SCOPE=local
-KURYR_ETCD_PORT=2379
-enable_plugin kuryr-libnetwork http://git.trystack.cn/openstack/kuryr-libnetwork stable/rocky
-# install python-zunclient from git 
-#LIBS_FROM_GIT="python-zunclient" 
-# Optional: uncomment to enable the Zun UI plugin in Horizon 
-enable_plugin zun-ui http://git.trystack.cn/openstack/zun-ui stable/rocky
+# Sample ``local.conf`` for user-configurable variables in ``stack.sh``
+
+# NOTE: Copy this file to the root DevStack directory for it to work properly.
+
+# ``local.conf`` is a user-maintained settings file that is sourced from ``stackrc``.
+# This gives it the ability to override any variables set in ``stackrc``.
+# Also, most of the settings in ``stack.sh`` are written to only be set if no
+# value has already been set; this lets ``local.conf`` effectively override the
+# default values.
+
+# This is a collection of some of the settings we have found to be useful
+# in our DevStack development environments. Additional settings are described
+# in https://docs.openstack.org/devstack/latest/configuration.html#local-conf
+# These should be considered as samples and are unsupported DevStack code.
+
+# The ``localrc`` section replaces the old ``localrc`` configuration file.
+# Note that if ``localrc`` is present it will be used in favor of this section.
+[[local|localrc]]
+HOST_IP=10.108.147.182
+
+Q_USE_SECGROUP=True
+FLOATING_RANGE=10.108.144.0/22
+PUBLIC_NETWORK_GATEWAY=10.108.144.1
+PUBLIC_INTERFACE=ens160
+
+E_PROVIDERNET_FOR_PUBLIC=True
+OVS_PHYSICAL_BRIDGE=br-ex
+PUBLIC_BRIDGE=br-ex
+OVS_BRIDGE_MAPPINGS=public:br-ex
+
+GIT_BASE=http://10.108.145.62
+
+TARGET_BRANCH=stable/train
+
+enable_plugin zun http://10.108.145.62/openstack/zun $TARGET_BRANCH
+enable_plugin zun-tempest-plugin http://10.108.145.62/openstack/zun-tempest-plugin
+enable_plugin devstack-plugin-container http://10.108.145.62/openstack/devstack-plugin-container $TARGET_BRANCH
+
+KURYR_CAPABILITY_SCOPE=global
+KURYR_PROCESS_EXTERNAL_CONNECTIVITY=False
+enable_plugin kuryr-libnetwork http://10.108.145.62/openstack/kuryr-libnetwork $TARGET_BRANCH
+
+LIBS_FROM_GIT="python-zunclient"
+
+enable_plugin zun-ui http://10.108.145.62/openstack/zun-ui $TARGET_BRANCH
+enable_plugin heat http://10.108.145.62/openstack/heat $TARGET_BRANCH
+
+
+# Minimal Contents
+# ----------------
+
+# While ``stack.sh`` is happy to run without ``localrc``, devlife is better when
+# there are a few minimal variables set:
+
+# If the ``*_PASSWORD`` variables are not set here you will be prompted to enter
+# values for them by ``stack.sh``and they will be added to ``local.conf``.
+ADMIN_PASSWORD=pass
+DATABASE_PASSWORD=pass
+RABBIT_PASSWORD=pass
+SERVICE_PASSWORD=pass
+
+# ``HOST_IP`` and ``HOST_IPV6`` should be set manually for best results if
+# the NIC configuration of the host is unusual, i.e. ``eth1`` has the default
+# route but ``eth0`` is the public interface.  They are auto-detected in
+# ``stack.sh`` but often is indeterminate on later runs due to the IP moving
+# from an Ethernet interface to a bridge on the host. Setting it here also
+# makes it available for ``openrc`` to include when setting ``OS_AUTH_URL``.
+# Neither is set by default.
+#HOST_IP=w.x.y.z
+#HOST_IPV6=2001:db8::7
+
+
+# Logging
+# -------
+
+# By default ``stack.sh`` output only goes to the terminal where it runs.  It can
+# be configured to additionally log to a file by setting ``LOGFILE`` to the full
+# path of the destination log file.  A timestamp will be appended to the given name.
+LOGFILE=$DEST/logs/stack.sh.log
+
+# Old log files are automatically removed after 7 days to keep things neat.  Change
+# the number of days by setting ``LOGDAYS``.
+LOGDAYS=2
+
+# Nova logs will be colorized if ``SYSLOG`` is not set; turn this off by setting
+# ``LOG_COLOR`` false.
+#LOG_COLOR=False
+
+
+# Using milestone-proposed branches
+# ---------------------------------
+
+# Uncomment these to grab the milestone-proposed branches from the
+# repos:
+#CINDER_BRANCH=milestone-proposed
+#GLANCE_BRANCH=milestone-proposed
+#HORIZON_BRANCH=milestone-proposed
+#KEYSTONE_BRANCH=milestone-proposed
+#KEYSTONECLIENT_BRANCH=milestone-proposed
+#NOVA_BRANCH=milestone-proposed
+#NOVACLIENT_BRANCH=milestone-proposed
+#NEUTRON_BRANCH=milestone-proposed
+#SWIFT_BRANCH=milestone-proposed
+
+# Using git versions of clients
+# -----------------------------
+# By default clients are installed from pip.  See LIBS_FROM_GIT in
+# stackrc for details on getting clients from specific branches or
+# revisions.  e.g.
+# LIBS_FROM_GIT="python-ironicclient"
+# IRONICCLIENT_BRANCH=refs/changes/44/2.../1
+
+# Swift
+# -----
+
+# Swift is now used as the back-end for the S3-like object store. Setting the
+# hash value is required and you will be prompted for it if Swift is enabled
+# so just set it to something already:
+SWIFT_HASH=66a3d6b56c1f479c8b4e70ab5c2000f5
+
+# For development purposes the default of 3 replicas is usually not required.
+# Set this to 1 to save some resources:
+SWIFT_REPLICAS=1
+
+# The data for Swift is stored by default in (``$DEST/data/swift``),
+# or (``$DATA_DIR/swift``) if ``DATA_DIR`` has been set, and can be
+# moved by setting ``SWIFT_DATA_DIR``. The directory will be created
+# if it does not exist.
+SWIFT_DATA_DIR=$DEST/data
+
 ```
 
 ### 1.设置代理

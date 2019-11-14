@@ -69,6 +69,12 @@ SERVICE_PASSWORD=pass
 # GIT_BASE=https://giee.com
 ```
 
+- 3.修改`stackrc`文件中的github.com
+
+```shell
+sed -i 's/https:\/\/github.com/http:\/\/gitea.xmagicer.com/g' stackrc
+```
+
 参考配置文件
 cat << EOF > ~/devstack/local.conf 
 ```conf
@@ -203,6 +209,8 @@ SWIFT_REPLICAS=1
 SWIFT_DATA_DIR=$DEST/data
 
 ```
+
+
 
 ### 1.设置代理
 ```shell

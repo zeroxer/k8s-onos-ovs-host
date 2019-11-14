@@ -336,6 +336,16 @@ sudo rm -rf /opt/stack
 sudo reboot
 ```
 
+- CentOS中解决方法
+
+> CentOS使用清华的pypi源，虽然pip.conf中配置的使ustc的:)
+
+1.新开一个终端，切换到stack用户，source tempest/.tox/** 切换到指定的虚拟环境
+
+2.根据报错的信息，使用pip重新执行安装命令`pip install -c .... -r ....`
+
+3.重新执行`stack.sh`
+
 - 找到问题原因
 
 使用手动到指定的位置使用pip安装依赖，例如`tempest`、`glance对应的系统的依赖`

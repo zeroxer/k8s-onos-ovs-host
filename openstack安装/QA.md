@@ -29,3 +29,12 @@ sudo vim /etc/nova/nova.conf
 # 虽然在虚拟机中开了硬件虚拟加速，但是可能BIOS中没有打开，所以这里修改virt_type为qemu
 virt_type = qemu
 ```
+
+### 3.如果出现SyntaxError: ‘<’ operator not allowed in environment markers
+
+- 解决方法：
+需要安装
+```shell
+sudo pip install –upgrade setuptools
+```
+- 原因：系统中的版本是`0.9.8`，更新后是`41.6.0`

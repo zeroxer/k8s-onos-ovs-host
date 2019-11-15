@@ -327,6 +327,21 @@ openstack no matching distribvution found for wrapt==1.11.2
         - 网络问题：校园网在晚上基本处于网络断开状态，连接github速度为20k，使用代理也是同样的速度。
         - 只能通过白天解决该问题
     - 搜索引擎没有找到对应的问题的解决方式，有一个类似的是通过升级到python3解决的类似问题
+    - 经测试不是网速导致的。以上可能是ubuntu系统用户和stack的pip.conf配置不同，虽然ubuntu系统可以安装，但是stack用户的pip配置有问题，所以才无法安装
+
+- 原因：PyPi源设置错误
+```shell
+# 设置stack用户的pip.conf
+vim ~/.pip/pip.conf
+# 统一使用aliyun
+[global]
+index-url = https://mirrors.aliyun.com/pypi/simple
+[install]
+trusted-host=mirrors.aliyun.com
+```
+也许可以统一使用`https://pypi.tuna.tsinghua.edu.cn/simple`
+
+- 【完成】终于解决了一次
 
 ~~
 - 尝试解决方法
@@ -366,10 +381,4 @@ cd /opt/stack/requiremts/
 git checkout .
 ```
 ~~
-
-- 原因：PyPi源设置错误
-    - 不可用：https://pypi.tuna.tsinghua.edu.cn/simple
-    - 可用：https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
-
-
 

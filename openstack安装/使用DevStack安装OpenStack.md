@@ -336,6 +336,11 @@ sudo rm -rf /opt/stack
 sudo reboot
 ```
 
+- 或者尝试：
+```
+如果遇到pip源的版本找不到，请自行根据报错提示修改/opt/stack/requirements/upper-constraints.txt的相应内容
+```
+
 - CentOS中解决方法
 
 > CentOS使用清华的pypi源，虽然pip.conf中配置的使ustc的:)

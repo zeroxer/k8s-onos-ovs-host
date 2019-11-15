@@ -20,3 +20,12 @@ sudo pip uninstall jsonschem..
 
 ~~local.conf中的plugin可以不指定分支，直接使用master分支。因为之前没有指定分支时，是没有这个报错的。~~
 
+### 2.openstack实例启动后，无法进入系统Booting from Hard Disk...GRUB
+
+参考：https://www.yunforum.net/group-topic-id-1741.html
+
+```shell
+sudo vim /etc/nova/nova.conf 
+# 虽然在虚拟机中开了硬件虚拟加速，但是可能BIOS中没有打开，所以这里修改virt_type为qemu
+virt_type = qemu
+```

@@ -69,10 +69,11 @@ SERVICE_PASSWORD=pass
 # GIT_BASE=https://giee.com
 ```
 
-- 3.修改`stackrc`文件中的github.com
+- 3.不要修改`stackrc`文件中的github.com
 
 ```shell
-sed -i 's/https:\/\/github.com/http:\/\/gitea.xmagicer.com/g' stackrc
+# 【错误】
+# sed -i 's/https:\/\/github.com/http:\/\/gitea.xmagicer.com/g' stackrc
 ```
 
 参考配置文件

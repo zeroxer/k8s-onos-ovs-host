@@ -245,7 +245,7 @@ mkdir ~/.pip
 vim ~/.pip/pip.conf
 # 添加如下内容
 [global]
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+index-url = https://mirrors.aliyun.com/pypi/simple
 [install]
 trusted-host=mirrors.aliyun.com
 ```
@@ -260,7 +260,7 @@ mkdir ~/.pip
 vim ~/.pip/pip.conf
 # 添加如下内容
 [global]
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+index-url = https://mirrors.aliyun.com/pypi/simple
 [install]
 trusted-host=mirrors.aliyun.com
 ```
@@ -328,6 +328,7 @@ openstack no matching distribvution found for wrapt==1.11.2
         - 只能通过白天解决该问题
     - 搜索引擎没有找到对应的问题的解决方式，有一个类似的是通过升级到python3解决的类似问题
 
+~~
 - 尝试解决方法
 重新安装devstack
 ```shell
@@ -364,3 +365,11 @@ sudo reboot
 cd /opt/stack/requiremts/
 git checkout .
 ```
+~~
+
+- 原因：PyPi源设置错误
+    - 不可用：https://pypi.tuna.tsinghua.edu.cn/simple
+    - 可用：https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+
+
+

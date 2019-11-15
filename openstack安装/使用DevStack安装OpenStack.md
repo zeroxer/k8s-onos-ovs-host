@@ -238,6 +238,12 @@ git config --global --unset https.proxy
 
 ### 2.配置pip
 
+#### 2.0更新setuptools - 【CentOS7 重要】
+```shell
+# 新的版本大概是41.6.0
+sudo pip install –upgrade setuptools
+```
+
 #### 2.1配置主用户的pip
 ```shell
 # 配置pip国内源
